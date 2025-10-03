@@ -8,6 +8,7 @@ import { Produit } from '../model/produit.model';
 export class ProduitService {
 
   produits: Produit[];
+  produit!: Produit;
 
   constructor() {
     this.produits = [
@@ -38,5 +39,10 @@ export class ProduitService {
   // } 
   //}); 
    */
+  }
+
+  consulterProduit(id: number): Produit {
+    this.produit = this.produits.find(p => p.idProduit == id)!;
+    return this.produit;
   }
 }

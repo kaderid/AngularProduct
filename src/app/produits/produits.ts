@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Produit } from '../model/produit.model';
 import { CommonModule } from '@angular/common';
 import { ProduitService } from '../services/produit';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-produits',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './produits.html',
 })
 export class Produits  implements OnInit{
