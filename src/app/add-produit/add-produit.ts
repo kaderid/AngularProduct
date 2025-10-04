@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Produit } from '../model/produit.model';
 import { ProduitService } from '../services/produit';
+import { Categorie } from '../model/categorie.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-produit',
@@ -12,17 +14,27 @@ export class AddProduit implements OnInit{
 
   newProduit = new Produit();
 
+  categories! : Categorie[]; 
+  newIdCat! : number; 
+  newCategorie! : Categorie;
+
   message! : string;
 
-  constructor(private produitService: ProduitService){}
+  constructor(private produitService: ProduitService,
+    private router :Router){
+      
+    }
 
   ngOnInit(): void {
+    this.categories = this.produitService.listeCategories();
   }
 
   addProduit(){ 
-    //console.log(this.newProduit); 
-    this.produitService.ajouterProduit(this.newProduit);
-    this.message = "Produit " + this.newProduit.nomProduit + " ajouté avec succès !"
+   this.newCategorie = 
+   this.produitService.consulterCategorie(this.newIdCat); 
+   this.newProduit.categorie = this.newCategorie; 
+   this.produitService.ajouterProduit(this.newProduit); 
+   this.router.navigate(['produits']);
   }
 
 }

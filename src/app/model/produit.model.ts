@@ -4,5 +4,5 @@ idProduit? : number;
 nomProduit? : string; 
 prixProduit? : number; 
 dateCreation? : Date ; 
-categorie! : Categorie;
+categorie? : Categorie;
 } 
