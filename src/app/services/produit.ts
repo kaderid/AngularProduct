@@ -8,7 +8,6 @@ import { Produit } from '../model/produit.model';
 export class ProduitService {
 
   produits: Produit[];
-  produit!: Produit;
 
   constructor() {
     this.produits = [
@@ -42,7 +41,16 @@ export class ProduitService {
   }
 
   consulterProduit(id: number): Produit {
-    this.produit = this.produits.find(p => p.idProduit == id)!;
-    return this.produit;
+    return this.produits.find(p => p.idProduit == id)!;
+  }
+
+    updateProduit(prod: Produit) {
+     //chercher le produit prod du tableau produits
+     const index = this.produits.indexOf(prod, 0);
+     if (index > -1) {
+       this.produits.splice(index, 1); //supprimer l'ancien éléments
+       this.produits.splice(index, 0, prod); // insérer le nouvel élément
+      
+    }
   }
 }
