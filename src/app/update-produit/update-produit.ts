@@ -27,7 +27,7 @@ export class UpdateProduit implements OnInit {
 
 ngOnInit(): void { 
   this.produitService.listeCategories(). 
-  subscribe(cats => {this.categories = cats; 
+  subscribe(cats => {this.categories = cats._embedded.categories; 
     console.log(cats); 
   });
      this.produitService.consulterProduit(this.activatedRoute.snapshot.params['id']). 

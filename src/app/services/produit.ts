@@ -14,6 +14,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ProduitService {
+  apiURLCat: string = 'http://localhost:8080/produits/cat';
 
 
   produits!: Produit[];
