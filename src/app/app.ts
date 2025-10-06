@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { AuthService } from './services/auth';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,11 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('MesProduits');
+  title ='MesProduits';
+
+constructor (public authService: AuthService) {} 
+
+onLogout(){ 
+this.authService.logout(); 
+} 
 }

@@ -6,6 +6,7 @@ import { RechercheParCategorie } from './recherche-par-categorie/recherche-par-c
 import { RechercheParNom } from './recherche-par-nom/recherche-par-nom';
 import { ListeCategories } from './liste-categories/liste-categories';
 import { Login } from './login/login';
+import { Forbidden } from './forbidden/forbidden';
 
 export const routes: Routes = [
     {path: "produits", component : Produits},
@@ -15,5 +16,6 @@ export const routes: Routes = [
     {path: "rechercheParNom", component : RechercheParNom},
     {path: "listeCategories", component : ListeCategories},
     {path: 'login', component: Login},
+    {path:  'app-forbidden', component: Forbidden}, 
     {path: "", redirectTo: "produits", pathMatch: "full"}
 ];

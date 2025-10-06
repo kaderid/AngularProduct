@@ -3,6 +3,7 @@ import { Produit } from '../model/produit.model';
 import { CommonModule } from '@angular/common';
 import { ProduitService } from '../services/produit';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../services/auth';
 
 @Component({
   selector: 'app-produits',
@@ -13,8 +14,8 @@ export class Produits  implements OnInit{
 
   produits!: Produit[];
 
-  constructor(private produitService: ProduitService) {
-  }
+  constructor(private produitService: ProduitService,
+              public authService: AuthService ) {}
 
 
   ngOnInit(): void {

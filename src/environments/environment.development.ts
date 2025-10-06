@@ -1,1 +1,5 @@
-export const environment = {};
+export const environment = {
+          production : false,
+          apiURL: 'http://localhost:8090/produits/api'
+
+};

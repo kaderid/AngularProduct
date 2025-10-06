@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class Auth {
+export class AuthService {
   users: User[] = [{ "username": "admin", "password": "123", "roles": ['ADMIN'] },
-                    { "username": "nadhem", "password": "123", "roles": ['USER'] }];
+                    { "username": "kader", "password": "123", "roles": ['USER'] }];
 
 
   public loggedUser!: string;

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../model/user.model';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +13,23 @@ import { FormsModule } from '@angular/forms';
 export class Login implements OnInit{
 
 user = new User();
+erreur = 0;
 
   ngOnInit(): void {
   }
 
-  onLoggedin() {
-     console.log(this.user);
-     }
+   constructor(private authService : AuthService, 
+             private  router: Router) { } 
+
+  onLoggedin(){ 
+  console.log(this.user); 
+  let isValidUser: Boolean = this.authService.SignIn(this.user); 
+ 
+  if (isValidUser) 
+     this.router.navigate(['/']); 
+  else 
+     //alert('Login ou mot de passe incorrecte!');
+    this.erreur =1; 
+  } 
 
 }
