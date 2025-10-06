@@ -88,4 +88,8 @@ export class ProduitService {
   rechercherParNom(nom: string): Observable<Produit[]> { 
     const url = `${this.apiURL}/prodsByName/${nom}`; 
       return this.http.get<Produit[]>(url); }
+
+      ajouterCategorie( cat: Categorie):Observable<Categorie>{ 
+        return this.http.post<Categorie>(this.apiURLCat, cat, httpOptions); 
+      }
 }
