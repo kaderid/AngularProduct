@@ -5,6 +5,7 @@ import { UpdateProduit } from './update-produit/update-produit';
 import { RechercheParCategorie } from './recherche-par-categorie/recherche-par-categorie';
 import { RechercheParNom } from './recherche-par-nom/recherche-par-nom';
 import { ListeCategories } from './liste-categories/liste-categories';
+import { Login } from './login/login';
 
 export const routes: Routes = [
     {path: "produits", component : Produits},
@@ -13,5 +14,6 @@ export const routes: Routes = [
     {path: "rechercheParCategorie", component : RechercheParCategorie},
     {path: "rechercheParNom", component : RechercheParNom},
     {path: "listeCategories", component : ListeCategories},
+    {path: 'login', component: Login},
     {path: "", redirectTo: "produits", pathMatch: "full"}
 ];
