@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { CategorieWrapper } from '../model/categorie.Wrapped.model';
+import { AuthService } from './auth';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,7 +23,8 @@ export class ProduitService {
   produits!: Produit[];
   //categories : Categorie[];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private authService: AuthService) {
     /*  this.categories = [
         {idCat : 1, nomCat : "PC"},
         {idCat : 2, nomCat : "Imprimante"}]; */
@@ -54,7 +56,10 @@ export class ProduitService {
 
 
   listeProduit(): Observable<Produit[]> {
-    return this.http.get<Produit[]>(environment.apiURL);
+    let jwt = this.authService.getToken(); 
+     jwt = "Bearer "+jwt; 
+     let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+      return this.http.get<Produit[]>(this.apiURL+"/all",{headers:httpHeaders}); 
   }
 
 

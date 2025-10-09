@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../model/user.model';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+ import { JwtHelperService } from '@auth0/angular-jwt'; 
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class AuthService {
   roles!:string[]; 
   apiURL: string = 'http://localhost:8081/users'; 
   token!:string;
+  private helper = new JwtHelperService(); 
   
   constructor(private router: Router, 
               private http : HttpClient) { }
@@ -28,6 +30,20 @@ saveToken(jwt:string){
     localStorage.setItem('jwt',jwt); 
     this.token = jwt; 
     this.isloggedIn = true;
+    this.decodeJWT();
+  }
+
+   getToken():string { 
+    return this.token; 
+  } 
+
+   decodeJWT() 
+  {   if (this.token == undefined) 
+            return; 
+    const decodedToken = this.helper.decodeToken(this.token); 
+    this.roles = decodedToken.roles; 
+    console.log("roles"+this.roles)
+    this.loggedUser = decodedToken.sub; 
   }
 
   logout() { 
@@ -55,10 +71,11 @@ saveToken(jwt:string){
     return validUser;
    }*/
 
-   isAdmin():Boolean{ 
-    if (!this.roles) //this.roles== undefiened 
-      return false; 
-      return (this.roles.indexOf('ADMIN') >-1); }
+  isAdmin(): Boolean {
+    if (!this.roles)
+      return false;
+    return this.roles.indexOf('ADMIN') >= 0;
+  }
 
   setLoggedUserFromLocalStorage(login: string) {
     this.loggedUser = login;
