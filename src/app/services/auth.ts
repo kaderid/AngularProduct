@@ -46,14 +46,23 @@ saveToken(jwt:string){
     this.loggedUser = decodedToken.sub; 
   }
 
-  logout() { 
-    this.isloggedIn= false; 
-    this.loggedUser = undefined!; 
-    this.roles = undefined!; 
-    localStorage.removeItem('loggedUser'); 
-    localStorage.setItem('isloggedIn',String(this.isloggedIn)); 
-    this.router.navigate(['/login']); 
+  logout() {
+    this.loggedUser = undefined!;
+    this.roles = undefined!;
+    this.token = undefined!;
+    this.isloggedIn = false;
+    localStorage.removeItem('jwt');
+    this.router.navigate(['/login']);
+  } 
+
+   loadToken() { 
+    this.token = localStorage.getItem('jwt')!; 
+    this.decodeJWT(); 
   }
+
+  isTokenExpired(): Boolean 
+{ 
+return  this.helper.isTokenExpired(this.token);   } 
 
  /*SignIn(user :User):Boolean{ 
     let validUser: Boolean = false; 
