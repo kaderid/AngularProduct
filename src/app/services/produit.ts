@@ -55,12 +55,9 @@ export class ProduitService {
   }
 
 
-  listeProduit(): Observable<Produit[]>{ 
-    let jwt = this.authService.getToken(); 
-    jwt = "Bearer "+jwt; 
-    let httpHeaders = new HttpHeaders({"Authorization":jwt})  
-    return this.http.get<Produit[]>(this.apiURL+"/all",{headers:httpHeaders}); 
-    } 
+  listeProduit(): Observable<Produit[]> {
+    return this.http.get<Produit[]>(this.apiURL + "/all");
+  }  
  
   ajouterProduit( prod: Produit):Observable<Produit>{ 
       let jwt = this.authService.getToken(); 
